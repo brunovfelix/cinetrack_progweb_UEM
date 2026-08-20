@@ -1,45 +1,94 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<html lang="pt-BR">
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Cine Track</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>CineTrack</title>
     </head>
     <body>
-<!-- h1 inicial -->
-        <h1>Cine Track</h1>
-        <p>Welcome to <strong>Cine Track</strong>!</p>
-<!-- h2 de status possíveis -->
-        <h2>Status Possíveis</h2>
-        <ul>
-            <li class="item-status">Assistido</li>
-            <li class="item-status">Não Assistido</li>
-            <li class="item-status">Assistindo</li>
-        </ul>
-<!-- h2 de filmes favoritos -->
-        <h2>Meus Filmes Favoritos</h2>
-        <ol>
-            <li class="item-favorite">A Origem</li>
-            <li class="item-favorite">A Princesa e o Sapo</li>
-            <li class="item-favorite"> Canção de Bernadette</li>
-        </ol>
-        <!--  -->
-        <script src="" async defer></script>
-<!-- h2 de filmes favoritos -->
-        <h2>Sobre A Origem</h2>
-        <dl>
-            <dt>Diretor</dt> <dd>Christopher Nolan</dd>
-            <dt>Ano</dt> <dd>2010</dd>
-            <dt>Gênero</dt> <dd>Ficção</dd>
-        </dl>
-        <a href="adicionar.html">+ Adicionar FilmeS</a>
+
+        <header>
+            <h1>CineTrack</h1>
+            <input type="search" aria-label="Buscar filmes">
+            <button type="button">+ Adicionar</button>
+        </header>
+
+        <nav aria-label="Filtros de status">
+            <button class="ativo">Todos</button>
+            <button class="ativo">Assistido</button>
+            <button class="ativo">Assistindo</button>
+            <button class="ativo">Quero assistir</button>
+        </nav>
+
+        <main>
+            <section id="lista" aria-live="polite">
+                <article class="card" name="A Origem">
+                    <img src="img/a-origem.jpg" alt="Pôster do filme A Origem">
+                    <h2>A Origem</h2>
+                    <p>2010 • Ficção científica</p>
+                    <p aria-label="Nota: 3 de 5 estrelas">★★★☆☆</p>
+                    <span>Assistido</span>
+                    <button type="button">Editar</button>
+                    <button type="button">Remover</button>
+                </article>
+
+                <article class="card" name="Parasita">
+                    <img src="img/parasita.jpg" alt="Pôster do filme Parasita">
+                    <h2>Parasita</h2>
+                    <p>2019 • Drama</p>
+                    <p aria-label="Nota: 5 de 5 estrelas">★★★★★</p>
+                    <span>Assistido</span>
+                    <button type="button">Editar</button>
+                    <button type="button">Remover</button>
+                </article>
+                
+                <article class="card" name="O Auto da Compadecida">
+                    <img src="img/o-auto-da-compadecida.jpg" alt="Poster do filme 'O Auto da Compadecida'">
+                    <h2>O Auto da Compadecida</h2>
+                    <p>2010 • Ficção</p>
+                    <p aria-label="Nota: 5 de 5 estrelas">★★★★★</p>
+                    <span>Assistido</span>
+                    <button>Editar</button>
+                    <button>Remover</button>
+                </article>
+
+                <article class="card" name="Duna: Parte Dois">
+                    <img src="img/duna-parte-dois.jpg" alt="Pôster do filme Duna: Parte Dois">
+                    <h2>Duna: Parte Dois</h2>
+                    <p>2024 • Ficção científica</p>
+                    <p aria-label="Nota: 4 de 5 estrelas">★★★★☆</p>
+                    <span>Assistido</span>
+                    <button type="button">Editar</button>
+                    <button type="button">Remover</button>
+                </article>
+
+                <article class="card" name="Interestelar">
+                    <img src="img/interestelar.jpg" alt="Pôster do filme Interestelar">
+                    <h2>Interestelar</h2>
+                    <p>2014 • Ficção científica</p>
+                    <p aria-label="Nota: 5 de 5 estrelas">★★★★★</p>
+                    <span>Assistido</span>
+                    <button type="button">Editar</button>
+                    <button type="button">Remover</button>
+                </article>
+
+                <article class="card" name="Cidade de Deus">
+                    <img src="img/cidade-de-deus.jpg" alt="Pôster do filme Cidade de Deus">
+                    <h2>Cidade de Deus</h2>
+                    <p>2002 • Crime</p>
+                    <p aria-label="Nota: 5 de 5 estrelas">★★★★★</p>
+                    <span>Assistido</span>
+                    <button type="button">Editar</button>
+                    <button type="button">Remover</button>
+                </article>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 CineTrack. Bruno Viana and Cauã Karach.</p>
+            <a href="adicionar.html">+ Adicionar Filmes</a>
+        </footer>
+
     </body>
-<p>&copy; 2025 CineTrack. Bruno Viana and Cauã Karach.</p>
-    </html>
+</html>
