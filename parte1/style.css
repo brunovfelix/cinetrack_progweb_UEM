@@ -1,0 +1,93 @@
+/* Primaria: #1A3A5C | Acento: #C0392B | Neutro: #F5F5F5 */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    color: #1F2937;
+    background: #F5F5F5;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+}
+
+header {
+    background: #1A3A5C;
+    color: white;
+    padding: 16px 24px;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header button {
+    background: #C0392B;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+nav {
+    padding: 12px 24px;
+}
+
+main {
+    padding: 16px 24px;
+}
+
+.card {
+    background: white;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px #0002;
+    margin-bottom: 16px;
+}
+
+.card img {
+    width: 120px;
+}
+
+.card h2 {
+    font-size: 1.125rem;
+    color: #1A3A5C;
+}
+
+footer {
+    padding: 16px 24px;
+}
+
+footer a {
+    color: #1A3A5C;
+}
+
+form {
+    padding: 16px 24px;
+}
+
+label {
+    display: block;
+    margin-top: 12px;
+}
+
+form button {
+    margin-top: 16px;
+}
