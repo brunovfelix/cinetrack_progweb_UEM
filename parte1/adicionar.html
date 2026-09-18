@@ -1,46 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Filme - Cinetrack</title>
+    <title>Adicionar filme - CineTrack</title>
     <link rel="stylesheet" href="style.css">
 </head>
-    <a href="index.html">←
-        Voltar</a>
-    <h1>Adicionar Filme</h1>
 <body>
-    <form id = form-filme action="/filmes" method="post">
+    <a href="index.html">← Voltar</a>
+    <h1>Adicionar filme</h1>
 
-    <label for="titulo">Título</label>
+    <form id="form-filme" action="/filmes" method="post">
+        <label for="titulo">Título</label>
         <input id="titulo" name="titulo" type="text" required>
 
-    <label for="ano">Ano</label>
+        <label for="ano">Ano</label>
         <input id="ano" name="ano" type="number" min="1888" max="2030" step="1" required>
 
-    <label for="genero">Gênero</label>
+        <label for="genero">Gênero</label>
         <input id="genero" name="genero" type="text" required>
 
-    <label for="url">URL</label>
-        <input id="url" name="url" type="url">
+        <label for="poster">URL do pôster</label>
+        <input id="poster" name="poster" type="url">
 
-    <label for="status">Status</label>
+        <label for="status">Status</label>
         <select id="status" name="status" required>
             <option value="assistido">Assistido</option>
             <option value="assistindo">Assistindo</option>
-            <option value="quero-assistir">Quero assistir</option>
+            <option value="quero">Quero assistir</option>
         </select>
 
-    <label for="nota">Nota (1 a 5)</label>
+        <label for="nota">Nota (1 a 5)</label>
         <input id="nota" name="nota" type="number" min="1" max="5" step="1">
 
-    <label for="comentario">Comentário</label>
+        <label for="comentario">Comentário</label>
         <textarea id="comentario" name="comentario"></textarea>
 
         <button type="button">Cancelar</button>
         <button type="submit">Salvar</button>
     </form>
-
-    <script src="script.js"></script>
 </body>
 </html>
