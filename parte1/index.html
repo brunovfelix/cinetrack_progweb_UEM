@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+
         <title>CineTrack</title>
         <link rel="stylesheet" href="style.css">
     </head>
@@ -11,15 +11,15 @@
 
         <header>
             <h1>CineTrack</h1>
-            <input type="search" aria-label="Buscar filmes">
-            <button type="button">+ Adicionar</button>
+            <input type="search" id="busca" aria-label="Buscar filme">
+            <button type="button" id="btn-adicionar">+ Adicionar</button>
         </header>
 
         <nav aria-label="Filtros de status">
-            <button class="ativo">Todos</button>
-            <button>Assistido</button>
-            <button>Assistindo</button>
-            <button>Quero assistir</button>
+            <button class="ativo" data-status="todos">Todos</button>
+            <button data-status="assistido">Assistido</button>
+            <button data-status="assistindo">Assistindo</button>
+            <button data-status="quero">Quero assistir</button>
         </nav>
 
         <main>
@@ -28,9 +28,44 @@
         </main>
 
         <footer>
-            <p>&copy; 2025 CineTrack. Bruno Viana and Cauã Karach.</p>
-            <a href="adicionar.html">+ Adicionar filme</a>
+            <small>CineTrack &copy; 2026 &middot; 0 filmes cadastrados</small>
         </footer>
+
+        <div id="modal" hidden>
+            <div class="modal-conteudo">
+                <h2 id="modal-titulo">Adicionar filme</h2>
+
+                <form id="form-filme">
+                    <label for="titulo">Título</label>
+                    <input id="titulo" name="titulo" type="text" required>
+
+                    <label for="ano">Ano</label>
+                    <input id="ano" name="ano" type="number" min="1888" max="2030" step="1" required>
+
+                    <label for="genero">Gênero</label>
+                    <input id="genero" name="genero" type="text" required>
+
+                    <label for="poster">URL do pôster</label>
+                    <input id="poster" name="poster" type="url">
+
+                    <label for="status">Status</label>
+                    <select id="status" name="status" required>
+                        <option value="assistido">Assistido</option>
+                        <option value="assistindo">Assistindo</option>
+                        <option value="quero">Quero assistir</option>
+                    </select>
+
+                    <label for="nota">Nota (1 a 5)</label>
+                    <input id="nota" name="nota" type="number" min="1" max="5" step="1">
+
+                    <label for="comentario">Comentário</label>
+                    <textarea id="comentario" name="comentario"></textarea>
+
+                    <button type="button" id="btn-cancelar">Cancelar</button>
+                    <button type="submit">Salvar</button>
+                </form>
+            </div>
+        </div>
 
     <script src="app.js"></script>
     </body>
