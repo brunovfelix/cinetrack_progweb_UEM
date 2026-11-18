@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "titulo": "A Origem",
+    "ano": 2010,
+    "genero": "Ficção científica",
+    "nota": 5,
+    "status": "assistido",
+    "comentario": "Sonhos dentro de sonhos e uma trilha inesquecível.",
+    "poster": "https://image.tmdb.org/t/p/w500/9gk7adHYeDvHkCSEqAvQNLV5Uge.jpg"
+  },
+  {
+    "id": 2,
+    "titulo": "Parasita",
+    "ano": 2019,
+    "genero": "Suspense",
+    "nota": 4,
+    "status": "assistido",
+    "comentario": "Crítica social afiada, com reviravoltas surpreendentes.",
+    "poster": "https://image.tmdb.org/t/p/w500/7IiTTgloJzvGI1TAYymCfbfl3vT.jpg"
+  },
+  {
+    "id": 3,
+    "titulo": "O Auto da Compadecida",
+    "ano": 2000,
+    "genero": "Comédia",
+    "nota": 5,
+    "status": "assistido",
+    "comentario": "Clássico do humor brasileiro, sempre vale rever.",
+    "poster": "https://image.tmdb.org/t/p/w500/imcOp1kJsCsAFCoOtY5OnPrFbAf.jpg"
+  },
+  {
+    "id": 4,
+    "titulo": "Duna: Parte Dois",
+    "ano": 2024,
+    "genero": "Ficção científica",
+    "nota": 4,
+    "status": "assistindo",
+    "comentario": "Visual impressionante; ainda no meio do filme.",
+    "poster": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+  },
+  {
+    "id": 5,
+    "titulo": "Interestelar",
+    "ano": 2014,
+    "genero": "Ficção científica",
+    "nota": 5,
+    "status": "quero",
+    "comentario": "Quero rever numa tela grande.",
+    "poster": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+  },
+  {
+    "id": 6,
+    "titulo": "Cidade de Deus",
+    "ano": 2002,
+    "genero": "Drama",
+    "nota": 4,
+    "status": "quero",
+    "comentario": "Recomendado por amigos, ainda não assisti.",
+    "poster": "https://image.tmdb.org/t/p/w500/k7eYdWvhYQyRQoU2TB2A2Xu2TfD.jpg"
+  },
+  {
+    "id": 7,
+    "titulo": "Clube da Luta",
+    "ano": 1999,
+    "genero": "Drama",
+    "nota": 5,
+    "status": "assistido",
+    "comentario": "Plot twist incrível, trilha sonora abssurda",
+    "poster": "https://br.web.img3.acsta.net/medias/nmedia/18/90/95/96/20122166.jpg"
+  },
+  {
+    "id": 8,
+    "titulo": "La La Land",
+    "ano": 2016,
+    "genero": "Musical",
+    "nota": 5,
+    "status": "assistido",
+    "comentario": "Trilha sonora incrível, melhor romance do cinema.",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4V55Hn0hpZtUMWhrKrmT73_mmloQIRUpHeZaLCyBXoA&s=10"
+  },
+  {
+    "id": 9,
+    "titulo": "Armageddon",
+    "ano": 1998,
+    "genero": "Ação",
+    "nota": 5,
+    "status": "assistido",
+    "comentario": "Blockbuster muito divertido, com trilha sonora também impressionante",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxttqPUaNH3O5JxfiRz9pGnVP1nFf_9Qw42x5XCyVl0lI-mINykBPou7I&s=10"
+  }
+]
