@@ -221,7 +221,8 @@ form button:last-child {
     opacity: 0.8;
 }
 
-.vazio {
+.vazio,
+.aviso {
     padding: 16px 24px;
 }
 
@@ -231,4 +232,8 @@ form button:last-child {
     background: #FDECEA;
     color: #C0392B;
     border-radius: 6px;
+}
+
+.aviso.erro {
+    color: #C0392B;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const VAZIO = {
   titulo: "",
@@ -24,6 +24,15 @@ function ModalFilme({ filme, aoSalvar, aoFechar }) {
   // Os campos do filme em edição sobrescrevem os de VAZIO
   const [dados, setDados] = useState({ ...VAZIO, ...filme });
   const [erros, setErros] = useState([]);
+
+  // Esc fecha o modal; a limpeza remove o ouvinte quando o modal sai da tela
+  useEffect(() => {
+    function aoTeclar(e) {
+      if (e.key === "Escape") aoFechar();
+    }
+    document.addEventListener("keydown", aoTeclar);
+    return () => document.removeEventListener("keydown", aoTeclar);
+  }, [aoFechar]);
 
   function atualizar(campo, valor) {
     setDados((anteriores) => ({ ...anteriores, [campo]: valor }));

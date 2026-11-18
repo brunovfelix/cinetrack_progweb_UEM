@@ -1,5 +1,6 @@
-import { useState } from "react";
-import { filmesIniciais, gerarId } from "./data/filmes.js";
+import { useState, useEffect } from "react";
+import { gerarId } from "./data/filmes.js";
+import { listar } from "./api.js";
 import Header from "./components/Header.jsx";
 import Filtros from "./components/Filtros.jsx";
 import ListaFilmes from "./components/ListaFilmes.jsx";
@@ -9,11 +10,26 @@ import ModalFilme from "./components/ModalFilme.jsx";
 const anoAtual = new Date().getFullYear();
 
 function App() {
-  const [filmes, setFilmes] = useState(filmesIniciais);
+  const [filmes, setFilmes] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
   const [status, setStatus] = useState("todos");
   const [busca, setBusca] = useState("");
   // null: modal fechado; {}: novo filme; filme com id: edição
   const [editando, setEditando] = useState(null);
+
+  // [] : roda só depois do primeiro render
+  useEffect(() => {
+    listar()
+      .then((dados) => setFilmes(dados))
+      .catch((e) => setErro(e.message))
+      .finally(() => setCarregando(false));
+  }, []);
+
+  // Roda sempre que o total de filmes muda
+  useEffect(() => {
+    document.title = `CineTrack (${filmes.length})`;
+  }, [filmes.length]);
 
   // Estado derivado: recalculado a cada render, nunca guardado em estado
   const termo = busca.trim().toLowerCase();
@@ -48,13 +64,21 @@ function App() {
     setEditando(null);
   }
 
+  // O vazio continua tratado dentro do ListaFilmes
+  let conteudo;
+  if (carregando) {
+    conteudo = <p className="aviso">Carregando...</p>;
+  } else if (erro) {
+    conteudo = <p className="aviso erro" role="alert">Erro: {erro}</p>;
+  } else {
+    conteudo = <ListaFilmes filmes={visiveis} aoEditar={setEditando} aoRemover={remover} />;
+  }
+
   return (
     <>
       <Header busca={busca} aoBuscar={setBusca} aoAdicionar={() => setEditando({})} />
       <Filtros ativo={status} aoMudar={setStatus} />
-      <main>
-        <ListaFilmes filmes={visiveis} aoEditar={setEditando} aoRemover={remover} />
-      </main>
+      <main>{conteudo}</main>
       <footer>
         <small>
           CineTrack © {anoAtual} · {filmes.length} filmes cadastrados
