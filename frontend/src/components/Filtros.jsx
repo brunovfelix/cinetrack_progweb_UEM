@@ -1,11 +1,24 @@
-// Destaque fixo em "Todos" por enquanto; os cliques entram na Atividade 3
-function Filtros() {
+const OPCOES = [
+  { valor: "todos", rotulo: "Todos" },
+  { valor: "assistido", rotulo: "Assistido" },
+  { valor: "assistindo", rotulo: "Assistindo" },
+  { valor: "quero", rotulo: "Quero assistir" },
+];
+
+function Filtros({ ativo, aoMudar }) {
   return (
     <nav aria-label="Filtros de status">
-      <button type="button" className="ativo">Todos</button>
-      <button type="button">Assistido</button>
-      <button type="button">Assistindo</button>
-      <button type="button">Quero assistir</button>
+      {OPCOES.map(({ valor, rotulo }) => (
+        <button
+          key={valor}
+          type="button"
+          className={valor === ativo ? "ativo" : ""}
+          aria-pressed={valor === ativo}
+          onClick={() => aoMudar(valor)}
+        >
+          {rotulo}
+        </button>
+      ))}
     </nav>
   );
 }
