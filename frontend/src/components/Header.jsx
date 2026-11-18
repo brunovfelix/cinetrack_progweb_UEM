@@ -1,6 +1,6 @@
 import Titulo from "./Titulo.jsx";
 
-function Header({ busca, aoBuscar }) {
+function Header({ busca, aoBuscar, aoAdicionar }) {
   return (
     <header>
       <Titulo />
@@ -11,7 +11,7 @@ function Header({ busca, aoBuscar }) {
         value={busca}
         onChange={(e) => aoBuscar(e.target.value)}
       />
-      <button type="button">+ Adicionar</button>
+      <button type="button" onClick={aoAdicionar}>+ Adicionar</button>
     </header>
   );
 }

@@ -90,3 +90,8 @@ export const filmesIniciais = [
     comentario: "Blockbuster muito divertido, com trilha sonora também impressionante",
   },
 ];
+
+// Maior id existente + 1; com a lista vazia, Math.max(0) garante 1
+export function gerarId(lista) {
+  return Math.max(0, ...lista.map((filme) => filme.id)) + 1;
+}

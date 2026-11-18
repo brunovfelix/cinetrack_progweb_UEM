@@ -9,7 +9,7 @@ const ROTULOS = {
   quero: "Quero assistir",
 };
 
-function CardFilme({ filme }) {
+function CardFilme({ filme, aoEditar, aoRemover }) {
   const { titulo, ano, genero, poster, nota, status, comentario } = filme;
 
   return (
@@ -23,8 +23,8 @@ function CardFilme({ filme }) {
       <span className={`badge status-${status}`}>{ROTULOS[status]}</span>
       {comentario && <p className="comentario">{comentario}</p>}
       <div className="acoes">
-        <button type="button">Editar</button>
-        <button type="button">Remover</button>
+        <button type="button" onClick={() => aoEditar(filme)}>Editar</button>
+        <button type="button" onClick={() => aoRemover(filme.id)}>Remover</button>
       </div>
     </article>
   );
