@@ -1,12 +1,27 @@
 # CINE TRACK
 - Bruno Felix (139175) e Cauã Karach (RA 140488)
 
-## Como executar
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/brunovfelix/cinetrack_progweb_UEM.git
-   ```
-2. Abra o arquivo `parte1/index.html` no navegador
-   (ou use a extensão Live Server do VS Code).
+## Como rodar o backend
 
-Não há dependências nem etapa de build: o projeto usa só HTML, CSS e JavaScript.
+Em um terminal:
+
+```powershell
+cd backend
+npm install
+Copy-Item .env.example .env
+npm run dev
+```
+
+O backend usa a porta `3000`, definida em `backend/.env`.
+
+## Como rodar o frontend
+
+Em outro terminal:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Abra o endereço exibido pelo Vite (por padrão, `http://localhost:5173`).

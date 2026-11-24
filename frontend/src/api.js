@@ -1,12 +1,42 @@
-// Mock: imita o servidor com dados locais. No deck Node, o corpo vira fetch.
-import { filmesIniciais } from "./data/filmes.js";
+const API_URL = "http://localhost:3000";
 
-// Promise que conclui após ms
-function esperar(ms) {
-  return new Promise((ok) => setTimeout(ok, ms));
+async function requisicao(url, opcoes) {
+  const resposta = await fetch(url, opcoes);
+
+  if (!resposta.ok) {
+    const erro = await resposta.json();
+    throw new Error(
+      erro.mensagem || erro.erro || `Falha na requisição (${resposta.status}).`,
+    );
+  }
+
+  if (resposta.status === 204) {
+    return null;
+  }
+
+  return resposta.json();
 }
 
 export async function listar() {
-  await esperar(500); // simula a rede
-  return filmesIniciais;
+  return requisicao(`${API_URL}/filmes`);
+}
+
+export async function criar(filme) {
+  return requisicao(`${API_URL}/filmes`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(filme),
+  });
+}
+
+export async function atualizar(id, filme) {
+  return requisicao(`${API_URL}/filmes/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(filme),
+  });
+}
+
+export async function remover(id) {
+  return requisicao(`${API_URL}/filmes/${id}`, { method: "DELETE" });
 }

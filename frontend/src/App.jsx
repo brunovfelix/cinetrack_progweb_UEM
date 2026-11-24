@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { gerarId } from "./data/filmes.js";
-import { listar } from "./api.js";
+import { listar, criar, atualizar, remover } from "./api.js";
 import Header from "./components/Header.jsx";
 import Filtros from "./components/Filtros.jsx";
 import ListaFilmes from "./components/ListaFilmes.jsx";
@@ -20,10 +19,18 @@ function App() {
 
   // [] : roda só depois do primeiro render
   useEffect(() => {
-    listar()
-      .then((dados) => setFilmes(dados))
-      .catch((e) => setErro(e.message))
-      .finally(() => setCarregando(false));
+    async function carregar() {
+      try {
+        const dados = await listar();
+        setFilmes(dados);
+      } catch (e) {
+        setErro(e.message);
+      } finally {
+        setCarregando(false);
+      }
+    }
+
+    carregar();
   }, []);
 
   // Roda sempre que o total de filmes muda
@@ -37,31 +44,34 @@ function App() {
     .filter((filme) => status === "todos" || filme.status === status)
     .filter((filme) => filme.titulo.toLowerCase().includes(termo));
 
-  function adicionar(novoFilme) {
-    setFilmes((anteriores) => [
-      ...anteriores,
-      { ...novoFilme, id: gerarId(anteriores) },
-    ]);
-  }
-
-  function editar(id, alteracoes) {
-    setFilmes((anteriores) =>
-      anteriores.map((filme) =>
-        filme.id === id ? { ...filme, ...alteracoes, id } : filme));
-  }
-
-  function remover(id) {
+  async function removerFilme(id) {
     if (!confirm("Remover este filme?")) return;
-    setFilmes((anteriores) => anteriores.filter((filme) => filme.id !== id));
+
+    try {
+      await remover(id);
+      setFilmes((anteriores) => anteriores.filter((filme) => filme.id !== id));
+      setErro(null);
+    } catch (e) {
+      setErro(e.message);
+    }
   }
 
-  function salvar(dados) {
-    if (editando.id) {
-      editar(editando.id, dados);
-    } else {
-      adicionar(dados);
+  async function salvar(dados) {
+    try {
+      if (editando.id) {
+        const atualizado = await atualizar(editando.id, dados);
+        setFilmes((anteriores) =>
+          anteriores.map((filme) =>
+            filme.id === atualizado.id ? atualizado : filme));
+      } else {
+        const criado = await criar(dados);
+        setFilmes((anteriores) => [...anteriores, criado]);
+      }
+      setErro(null);
+      setEditando(null);
+    } catch (e) {
+      setErro(e.message);
     }
-    setEditando(null);
   }
 
   // O vazio continua tratado dentro do ListaFilmes
@@ -71,7 +81,7 @@ function App() {
   } else if (erro) {
     conteudo = <p className="aviso erro" role="alert">Erro: {erro}</p>;
   } else {
-    conteudo = <ListaFilmes filmes={visiveis} aoEditar={setEditando} aoRemover={remover} />;
+    conteudo = <ListaFilmes filmes={visiveis} aoEditar={setEditando} aoRemover={removerFilme} />;
   }
 
   return (
