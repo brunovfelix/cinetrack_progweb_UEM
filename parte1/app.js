@@ -103,36 +103,6 @@ const filmesIniciais = [
         nota: 4,
         status: "quero",
         comentario: "Recomendado por amigos, ainda não assisti."
-    },
-    {
-        id: 7,
-        titulo: "Clube da Luta",
-        ano: 1999,
-        genero: "Drama",
-        poster: "https://br.web.img3.acsta.net/medias/nmedia/18/90/95/96/20122166.jpg",
-        nota: 5,
-        status: "assistido",
-        comentario: "Plot twist incrível, trilha sonora abssurda"
-    },
-    {
-        id: 8,
-        titulo: "La La Land",
-        ano: 2016,
-        genero: "Musical",
-        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4V55Hn0hpZtUMWhrKrmT73_mmloQIRUpHeZaLCyBXoA&s=10",
-        nota: 5,
-        status: "assistido",
-        comentario: "Trilha sonora incrível, melhor romance do cinema."
-    },
-    {
-        id: 9,
-        titulo: "Armageddon",
-        ano: 1998,
-        genero: "Ação",
-        poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxttqPUaNH3O5JxfiRz9pGnVP1nFf_9Qw42x5XCyVl0lI-mINykBPou7I&s=10",
-        nota: 5,
-        status: "assistido",
-        comentario: "Blockbuster muito divertido, com trilha sonora também impressionante"
     }
 ];
 
@@ -151,6 +121,7 @@ function carregar() {
 let filmes = carregar();
 let termoAtual = "";
 let statusAtual = "todos";
+let ordemAtual = "";
 let editandoId = null;
 
 // ---------- Seleção no DOM (Aula 2 e 3) ----------
@@ -159,6 +130,7 @@ const listaEl = document.querySelector("#lista");
 const rodapeEl = document.querySelector("footer small");
 const nav = document.querySelector("nav");
 const busca = document.querySelector("#busca");
+const ordenar = document.querySelector("#ordenar");
 const modal = document.querySelector("#modal");
 const modalTitulo = document.querySelector("#modal-titulo");
 const form = document.querySelector("#form-filme");
@@ -216,10 +188,18 @@ function renderizarCards(lista) {
 // ---------- Ponto único de atualização (Aula 5) ----------
 
 function atualizar() {
-    const visiveis = aplicarFiltros(filmes, {
+    const filtrados = aplicarFiltros(filmes, {
         termo: termoAtual,
         status: statusAtual
     });
+    const comparadores = {
+        titulo: (a, b) => a.titulo.localeCompare(b.titulo, "pt-BR"),
+        ano: (a, b) => a.ano - b.ano,
+        nota: (a, b) => b.nota - a.nota
+    };
+    const visiveis = ordemAtual
+        ? [...filtrados].sort(comparadores[ordemAtual])
+        : filtrados;
     renderizarCards(visiveis);
     rodapeEl.textContent =
         `CineTrack © 2026 · ${filmes.length} filmes cadastrados`;
@@ -269,6 +249,11 @@ form.addEventListener("submit", (e) => {
 
     salvar();
     fechar();
+    atualizar();
+});
+
+ordenar.addEventListener("change", (e) => {
+    ordemAtual = e.target.value;
     atualizar();
 });
 
