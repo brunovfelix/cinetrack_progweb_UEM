@@ -63,36 +63,6 @@ const filmes = [
     comentario: "Recomendado por amigos, ainda não assisti.",
     poster: "https://image.tmdb.org/t/p/w500/k7eYdWvhYQyRQoU2TB2A2Xu2TfD.jpg",
   },
-  {
-    id: 7,
-    titulo: "Clube da Luta",
-    ano: 1999,
-    genero: "Drama",
-    nota: 5,
-    status: "assistido",
-    comentario: "Plot twist incrível, trilha sonora abssurda",
-    poster: "https://br.web.img3.acsta.net/medias/nmedia/18/90/95/96/20122166.jpg",
-  },
-  {
-    id: 8,
-    titulo: "La La Land",
-    ano: 2016,
-    genero: "Musical",
-    nota: 5,
-    status: "assistido",
-    comentario: "Trilha sonora incrível, melhor romance do cinema.",
-    poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4V55Hn0hpZtUMWhrKrmT73_mmloQIRUpHeZaLCyBXoA&s=10",
-  },
-  {
-    id: 9,
-    titulo: "Armageddon",
-    ano: 1998,
-    genero: "Ação",
-    nota: 5,
-    status: "assistido",
-    comentario: "Blockbuster muito divertido, com trilha sonora também impressionante",
-    poster: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxttqPUaNH3O5JxfiRz9pGnVP1nFf_9Qw42x5XCyVl0lI-mINykBPou7I&s=10",
-  },
 ];
 
 // __dirname: pasta deste arquivo, não a pasta de onde o comando foi rodado

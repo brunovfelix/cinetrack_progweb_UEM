@@ -26,10 +26,37 @@ function gerarId(lista) {
 
 app.get("/filmes", (req, res) => {
   const filmes = lerFilmes();
-  const resultado = req.query.status
-    ? filmes.filter((filme) => filme.status === req.query.status)
-    : filmes;
+  const status = req.query.status;
+  const termo = String(req.query.q || "").trim().toLowerCase();
+  const resultado = filmes.filter((filme) => {
+    const correspondeStatus = !status || filme.status === status;
+    const correspondeBusca = !termo || filme.titulo.toLowerCase().includes(termo);
+    return correspondeStatus && correspondeBusca;
+  });
   res.json(resultado);
+});
+
+app.get("/stats", (req, res) => {
+  const filmes = lerFilmes();
+  const estatisticas = filmes.reduce((resultado, filme) => {
+    resultado.total += 1;
+    resultado.porStatus[filme.status] =
+      (resultado.porStatus[filme.status] || 0) + 1;
+    resultado.somaNotas += filme.nota;
+    return resultado;
+  }, {
+    total: 0,
+    porStatus: { assistido: 0, assistindo: 0, quero: 0 },
+    somaNotas: 0,
+  });
+
+  res.json({
+    total: estatisticas.total,
+    porStatus: estatisticas.porStatus,
+    mediaNotas: estatisticas.total
+      ? Number((estatisticas.somaNotas / estatisticas.total).toFixed(1))
+      : 0,
+  });
 });
 
 app.get("/filmes/:id", (req, res) => {

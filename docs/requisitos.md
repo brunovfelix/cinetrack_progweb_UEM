@@ -28,8 +28,9 @@ Compadecida, Duna: Parte Dois, Interestelar e Cidade de Deus.
 
 | Método | Caminho | Parâmetros/corpo | Resultado |
 |---|---|---|---|
-| GET | `/filmes` | Query opcional `status` | Lista de filmes |
+| GET | `/filmes` | Query opcional `q` (busca por título) e `status` | Lista de filmes filtrada |
 | GET | `/filmes/:id` | `id` numérico | Filme correspondente |
+| GET | `/stats` | — | Total, contagem por status e média das notas |
 | POST | `/filmes` | JSON com título, ano e demais campos | Filme criado |
 | PUT | `/filmes/:id` | `id` numérico e JSON de alterações | Filme atualizado |
 | DELETE | `/filmes/:id` | `id` numérico | Remove o filme |
