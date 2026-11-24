@@ -7,11 +7,10 @@ HTML, CSS e JavaScript; o frontend React consome a API Node.js.
 
 ## Dados de um filme
 
-Cada filme contém os campos:
+Cada filme contém sete campos preenchidos pelo usuário:
 
 | Campo | Descrição |
 |---|---|
-| `id` | Identificador numérico gerado pela aplicação |
 | `titulo` | Título do filme |
 | `ano` | Ano de lançamento |
 | `genero` | Gênero cinematográfico |
@@ -19,6 +18,8 @@ Cada filme contém os campos:
 | `nota` | Nota de 1 a 5 |
 | `status` | `assistido`, `assistindo` ou `quero` |
 | `comentario` | Comentário opcional |
+
+O `id` numérico é gerado pela aplicação e não é preenchido pelo usuário.
 
 O catálogo inicial usa os seis filmes canônicos: A Origem, Parasita, O Auto da
 Compadecida, Duna: Parte Dois, Interestelar e Cidade de Deus.
