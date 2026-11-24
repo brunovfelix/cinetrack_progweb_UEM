@@ -12,8 +12,24 @@ function App() {
   const [filmes, setFilmes] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
-  const [status, setStatus] = useState("todos");
-  const [busca, setBusca] = useState("");
+  const [status, setStatus] = useState(() => {
+    try {
+      const filtros = JSON.parse(localStorage.getItem("cinetrack:filtros"));
+      return ["todos", "assistido", "assistindo", "quero"].includes(filtros.status)
+        ? filtros.status
+        : "todos";
+    } catch {
+      return "todos";
+    }
+  });
+  const [busca, setBusca] = useState(() => {
+    try {
+      const filtros = JSON.parse(localStorage.getItem("cinetrack:filtros"));
+      return typeof filtros.busca === "string" ? filtros.busca : "";
+    } catch {
+      return "";
+    }
+  });
   // null: modal fechado; {}: novo filme; filme com id: edição
   const [editando, setEditando] = useState(null);
 
@@ -37,6 +53,10 @@ function App() {
   useEffect(() => {
     document.title = `CineTrack (${filmes.length})`;
   }, [filmes.length]);
+
+  useEffect(() => {
+    localStorage.setItem("cinetrack:filtros", JSON.stringify({ busca, status }));
+  }, [busca, status]);
 
   // Estado derivado: recalculado a cada render, nunca guardado em estado
   const termo = busca.trim().toLowerCase();
