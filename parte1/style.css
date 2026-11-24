@@ -1,5 +1,14 @@
 /* Primaria: #1A3A5C | Acento: #C0392B | Neutro: #F5F5F5 */
 
+:root {
+    --cor-primaria: #1A3A5C;
+    --cor-acento: #C0392B;
+    --cor-neutra: #F5F5F5;
+    --cor-texto: #1F2937;
+    --cor-superficie: #FFFFFF;
+    --cor-borda: #CCCCCC;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -182,34 +191,58 @@ footer a {
 }
 
 form {
-    padding: 0;
+    padding: 24px;
 }
 
-label {
-    display: block;
-    margin-top: 12px;
+#form-filme {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 480px;
+    margin: 24px auto;
+    background: var(--cor-superficie);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px #0002;
 }
 
-input, select, textarea {
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    margin: 0;
+    font-weight: 700;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
     width: 100%;
     padding: 8px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--cor-borda);
     border-radius: 6px;
     font: inherit;
 }
 
-form button {
-    margin-top: 16px;
-    padding: 8px 16px;
-    border: 1px solid #1A3A5C;
-    border-radius: 6px;
-    background: white;
-    color: #1A3A5C;
+.acoes-formulario {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 }
 
-form button:last-child {
-    margin-left: 8px;
-    background: #C0392B;
-    border-color: #C0392B;
+form button {
+    margin: 0;
+    padding: 8px 16px;
+    border: 1px solid var(--cor-primaria);
+    border-radius: 6px;
+    background: white;
+    color: var(--cor-primaria);
+}
+
+form button[type="submit"] {
+    background: var(--cor-acento);
+    border-color: var(--cor-acento);
     color: white;
 }

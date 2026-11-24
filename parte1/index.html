@@ -37,33 +37,49 @@
                 <h2 id="modal-titulo">Adicionar filme</h2>
 
                 <form id="form-filme">
-                    <label for="titulo">Título</label>
-                    <input id="titulo" name="titulo" type="text" required>
+                    <div class="campo">
+                        <label for="titulo">Título</label>
+                        <input id="titulo" name="titulo" type="text" required>
+                    </div>
 
-                    <label for="ano">Ano</label>
-                    <input id="ano" name="ano" type="number" min="1888" max="2030" step="1" required>
+                    <div class="campo">
+                        <label for="ano">Ano</label>
+                        <input id="ano" name="ano" type="number" min="1888" max="2030" step="1" required>
+                    </div>
 
-                    <label for="genero">Gênero</label>
-                    <input id="genero" name="genero" type="text" required>
+                    <div class="campo">
+                        <label for="genero">Gênero</label>
+                        <input id="genero" name="genero" type="text" required>
+                    </div>
 
-                    <label for="poster">URL do pôster</label>
-                    <input id="poster" name="poster" type="url">
+                    <div class="campo">
+                        <label for="poster">URL do pôster</label>
+                        <input id="poster" name="poster" type="url">
+                    </div>
 
-                    <label for="status">Status</label>
-                    <select id="status" name="status" required>
-                        <option value="assistido">Assistido</option>
-                        <option value="assistindo">Assistindo</option>
-                        <option value="quero">Quero assistir</option>
-                    </select>
+                    <div class="campo">
+                        <label for="status">Status</label>
+                        <select id="status" name="status" required>
+                            <option value="assistido">Assistido</option>
+                            <option value="assistindo">Assistindo</option>
+                            <option value="quero">Quero assistir</option>
+                        </select>
+                    </div>
 
-                    <label for="nota">Nota (1 a 5)</label>
-                    <input id="nota" name="nota" type="number" min="1" max="5" step="1">
+                    <div class="campo">
+                        <label for="nota">Nota (1 a 5)</label>
+                        <input id="nota" name="nota" type="number" min="1" max="5" step="1">
+                    </div>
 
-                    <label for="comentario">Comentário</label>
-                    <textarea id="comentario" name="comentario"></textarea>
+                    <div class="campo">
+                        <label for="comentario">Comentário</label>
+                        <textarea id="comentario" name="comentario"></textarea>
+                    </div>
 
-                    <button type="button" id="btn-cancelar">Cancelar</button>
-                    <button type="submit">Salvar</button>
+                    <div class="acoes-formulario">
+                        <button type="button" id="btn-cancelar">Cancelar</button>
+                        <button type="submit">Salvar</button>
+                    </div>
                 </form>
             </div>
         </div>
