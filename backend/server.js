@@ -7,6 +7,7 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const arquivoFilmes = path.join(__dirname, "data", "filmes.json");
+const statusValidos = ["assistido", "assistindo", "quero"];
 
 app.use(cors());
 app.use(morgan("dev"));
@@ -22,6 +23,30 @@ function salvarFilmes(lista) {
 
 function gerarId(lista) {
   return Math.max(0, ...lista.map((filme) => filme.id)) + 1;
+}
+
+function validarFilme(filme) {
+  const erros = [];
+
+  if (typeof filme.titulo !== "string" || !filme.titulo.trim()) {
+    erros.push("Título obrigatório");
+  }
+  if (typeof filme.genero !== "string" || !filme.genero.trim()) {
+    erros.push("Gênero obrigatório");
+  }
+  if (!Number.isInteger(filme.ano) || filme.ano < 1888 || filme.ano > 2030) {
+    erros.push("Ano inválido");
+  }
+  if (!Number.isInteger(filme.nota) || filme.nota < 1 || filme.nota > 5) {
+    erros.push("Nota inválida (use um valor de 1 a 5)");
+  }
+  if (!filme.status) {
+    erros.push("Status obrigatório");
+  } else if (!statusValidos.includes(filme.status)) {
+    erros.push("Status inválido");
+  }
+
+  return erros;
 }
 
 app.get("/filmes", (req, res) => {
@@ -72,10 +97,9 @@ app.get("/filmes/:id", (req, res) => {
 
 app.post("/filmes", (req, res) => {
   const dados = req.body || {};
-  const { titulo, ano } = dados;
-
-  if (typeof titulo !== "string" || !titulo.trim() || ano === undefined || ano === null || ano === "") {
-    return res.status(400).json({ mensagem: "Título e ano são obrigatórios." });
+  const erros = validarFilme(dados);
+  if (erros.length > 0) {
+    return res.status(400).json({ erros });
   }
 
   const filmes = lerFilmes();
@@ -95,7 +119,17 @@ app.put("/filmes/:id", (req, res) => {
     return res.status(404).json({ mensagem: "Filme não encontrado." });
   }
 
-  filmes[indice] = { ...filmes[indice], ...(req.body || {}), id: filmes[indice].id };
+  const atualizado = {
+    ...filmes[indice],
+    ...(req.body || {}),
+    id: filmes[indice].id,
+  };
+  const erros = validarFilme(atualizado);
+  if (erros.length > 0) {
+    return res.status(400).json({ erros });
+  }
+
+  filmes[indice] = atualizado;
   salvarFilmes(filmes);
 
   res.json(filmes[indice]);
