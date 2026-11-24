@@ -21,8 +21,8 @@ html {
 
 body {
     font-family: system-ui, sans-serif;
-    color: #1F2937;
-    background: #F5F5F5;
+    color: var(--cor-texto);
+    background: var(--cor-neutra);
     line-height: 1.5;
 }
 
@@ -245,4 +245,31 @@ form button[type="submit"] {
     background: var(--cor-acento);
     border-color: var(--cor-acento);
     color: white;
+}
+
+@media print {
+    :root {
+        --cor-neutra: #FFFFFF;
+        --cor-texto: #111111;
+    }
+
+    body,
+    header {
+        color: var(--cor-texto);
+        background: var(--cor-neutra);
+    }
+
+    header input,
+    #btn-adicionar,
+    nav,
+    .card .acoes,
+    footer {
+        display: none;
+    }
+
+    .card {
+        box-shadow: none;
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
 }
