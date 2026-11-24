@@ -1,13 +1,5 @@
-// Auxiliares portados da Parte 1: não dependem de props, ficam fora do componente
-function estrelas(nota) {
-  return "★".repeat(nota) + "☆".repeat(5 - nota);
-}
-
-const ROTULOS = {
-  assistido: "Assistido",
-  assistindo: "Assistindo",
-  quero: "Quero assistir",
-};
+import Estrelas from "./Estrelas.jsx";
+import Badge from "./Badge.jsx";
 
 function CardFilme({ filme, aoEditar, aoRemover }) {
   const { titulo, ano, genero, poster, nota, status, comentario } = filme;
@@ -18,9 +10,9 @@ function CardFilme({ filme, aoEditar, aoRemover }) {
       <h2>{titulo}</h2>
       <p>{ano} • {genero}</p>
       <p className="nota" aria-label={`Nota: ${nota} de 5 estrelas`}>
-        Nota: {estrelas(nota)}
+        Nota: <Estrelas nota={nota} />
       </p>
-      <span className={`badge status-${status}`}>{ROTULOS[status]}</span>
+      <Badge status={status} />
       {comentario && <p className="comentario">{comentario}</p>}
       <div className="acoes">
         <button type="button" onClick={() => aoEditar(filme)}>Editar</button>
