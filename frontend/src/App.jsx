@@ -11,7 +11,9 @@ const anoAtual = new Date().getFullYear();
 function App() {
   const [filmes, setFilmes] = useState([]);
   const [carregando, setCarregando] = useState(true);
-  const [erro, setErro] = useState(null);
+  // erroCarga substitui a lista; erroOperacao é um aviso que não esconde nada
+  const [erroCarga, setErroCarga] = useState(null);
+  const [erroOperacao, setErroOperacao] = useState(null);
   const [status, setStatus] = useState(() => {
     try {
       const filtros = JSON.parse(localStorage.getItem("cinetrack:filtros"));
@@ -40,7 +42,7 @@ function App() {
         const dados = await listar();
         setFilmes(dados);
       } catch (e) {
-        setErro(e.message);
+        setErroCarga(e.message);
       } finally {
         setCarregando(false);
       }
@@ -70,10 +72,20 @@ function App() {
     try {
       await remover(id);
       setFilmes((anteriores) => anteriores.filter((filme) => filme.id !== id));
-      setErro(null);
+      setErroOperacao(null);
     } catch (e) {
-      setErro(e.message);
+      setErroOperacao(e.message);
     }
+  }
+
+  function abrirModal(filme) {
+    setErroOperacao(null);
+    setEditando(filme);
+  }
+
+  function fecharModal() {
+    setErroOperacao(null);
+    setEditando(null);
   }
 
   async function salvar(dados) {
@@ -87,10 +99,10 @@ function App() {
         const criado = await criar(dados);
         setFilmes((anteriores) => [...anteriores, criado]);
       }
-      setErro(null);
-      setEditando(null);
+      fecharModal();
     } catch (e) {
-      setErro(e.message);
+      // O modal continua aberto e mostra o erro (ver ModalFilme)
+      setErroOperacao(e.message);
     }
   }
 
@@ -98,17 +110,23 @@ function App() {
   let conteudo;
   if (carregando) {
     conteudo = <p className="aviso">Carregando...</p>;
-  } else if (erro) {
-    conteudo = <p className="aviso erro" role="alert">Erro: {erro}</p>;
+  } else if (erroCarga) {
+    conteudo = <p className="aviso erro" role="alert">Erro: {erroCarga}</p>;
   } else {
-    conteudo = <ListaFilmes filmes={visiveis} aoEditar={setEditando} aoRemover={removerFilme} />;
+    conteudo = <ListaFilmes filmes={visiveis} aoEditar={abrirModal} aoRemover={removerFilme} />;
   }
 
   return (
     <>
-      <Header busca={busca} aoBuscar={setBusca} aoAdicionar={() => setEditando({})} />
+      <Header busca={busca} aoBuscar={setBusca} aoAdicionar={() => abrirModal({})} />
       <Filtros ativo={status} aoMudar={setStatus} />
       <p className="aviso">Exibindo {visiveis.length} de {filmes.length} filmes</p>
+      {erroOperacao && editando === null && (
+        <p className="aviso erro" role="alert">
+          Erro: {erroOperacao}{" "}
+          <button type="button" onClick={() => setErroOperacao(null)}>Fechar</button>
+        </p>
+      )}
       <main>{conteudo}</main>
       <footer>
         <small>
@@ -119,8 +137,9 @@ function App() {
       {editando !== null && (
         <ModalFilme
           filme={editando}
+          erroServidor={erroOperacao}
           aoSalvar={salvar}
-          aoFechar={() => setEditando(null)}
+          aoFechar={fecharModal}
         />
       )}
     </>

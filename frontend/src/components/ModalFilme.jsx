@@ -20,7 +20,7 @@ function validarFilme(filme) {
   return erros;
 }
 
-function ModalFilme({ filme, aoSalvar, aoFechar }) {
+function ModalFilme({ filme, erroServidor, aoSalvar, aoFechar }) {
   // Os campos do filme em edição sobrescrevem os de VAZIO
   const [dados, setDados] = useState({ ...VAZIO, ...filme });
   const [erros, setErros] = useState([]);
@@ -58,6 +58,10 @@ function ModalFilme({ filme, aoSalvar, aoFechar }) {
           <ul className="erros" role="alert">
             {erros.map((erro) => <li key={erro}>{erro}</li>)}
           </ul>
+        )}
+
+        {erroServidor && (
+          <p className="erros" role="alert">Erro ao salvar: {erroServidor}</p>
         )}
 
         <form onSubmit={submeter}>
